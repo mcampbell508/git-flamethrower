@@ -1,0 +1,27 @@
+language: php
+
+php:
+  - 7.1
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+# Only run tests when master branch changes or when a PR branch is updated.
+branches:
+  only:
+  - master
+
+before_script:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+
+script:
+  - php vendor/bin/phpunit --coverage-text
+  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB "${TRAVIS_COMMIT_RANGE}")
+  - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi
+  - vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no "${EXTRA_ARGS[@]}"
+
+matrix:
+  fast_finish: true

@@ -1,0 +1,33 @@
+{
+    "name": "mcampbell508/git-flamethrower",
+    "description": "A skeleton package to use as a base",
+    "keywords": ["skeleton"],
+    "homepage": "https://github.com/mcampbell508/git-flamethrower",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Campbell",
+            "email": "matthewcampbell508@gmail.com",
+            "homepage": "http://mcampbell508.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master@dev",
+        "phpunit/phpunit": "^6.5",
+        "friendsofphp/php-cs-fixer": "2.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "MCampbell508\\Skeleton\\": ["src"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MCampbell508\\Tests\\": ["tests"]
+        }
+    }
+}
