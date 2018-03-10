@@ -1,7 +1,7 @@
 {
     "name": "mcampbell508/git-flamethrower",
-    "description": "A skeleton package to use as a base",
-    "keywords": ["skeleton"],
+    "description": "A tool to enhance Git commands",
+    "keywords": ["git"],
     "homepage": "https://github.com/mcampbell508/git-flamethrower",
     "license": "MIT",
     "authors": [
@@ -24,12 +24,15 @@
     },
     "autoload": {
         "psr-4": {
-            "MCampbell508\\Skeleton\\": ["src"]
+            "MCampbell508\\Git\\Flamethrower\\": ["src"]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "MCampbell508\\Tests\\": ["tests"]
         }
-    }
+    },
+    "bin": [
+        "bin/git-flamethrower"
+    ]
 }
