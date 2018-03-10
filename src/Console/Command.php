@@ -2,6 +2,8 @@
 
 namespace MCampbell508\Git\Flamethrower\Console;
 
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+
 class Command extends SymfonyCommand
 {
     protected $CLImate;
