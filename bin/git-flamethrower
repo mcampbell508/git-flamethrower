@@ -1,4 +1,11 @@
 #!/usr/bin/env php
 <?php
 
-require_once(__DIR__ . '/git-flamethrower.php');
+use MCampbell508\Git\Flamethrower\Console\Application;
+
+require __DIR__ . '/../app/bootstrap.php';
+
+/** @var Application $application */
+$console = $container['application'];
+
+$console->run();
