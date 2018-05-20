@@ -4,6 +4,8 @@ namespace MCampbell508\Git\Flamethrower\Console\Commands;
 
 use MCampbell508\Git\Flamethrower\Console\CLImate;
 use MCampbell508\Git\Flamethrower\Console\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Menu extends Command
 {
