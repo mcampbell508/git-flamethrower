@@ -5,3 +5,14 @@ Thumbs.db
 /.php_cs
 /.php_cs.cache
 /phpunit.xml
+/phpcs.xml
+
+# OS Generated Files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
