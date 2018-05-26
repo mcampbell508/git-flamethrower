@@ -41,11 +41,7 @@ Usage
 -----
 
 ``` php
-use MCampbell508\Git\Flamethrower;
-
-$skeleton = new Skeleton();
-echo $skeleton->echoPhrase('Hello, World!');
-
+vendor/bin/git-flamethrower
 ```
 
 Code Style
