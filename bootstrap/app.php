@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -9,10 +8,10 @@
 | which serves as the "glue" for all the components of Laravel, and is
 | the IoC container for the system binding all of the various parts.
 |
-*/
+ */
 
 $app = new LaravelZero\Framework\Application(
-    dirname(__DIR__)
+    \dirname(__DIR__)
 );
 
 /*
@@ -24,7 +23,7 @@ $app = new LaravelZero\Framework\Application(
 | we will be able to resolve them when needed. The kernels serve the
 | incoming requests to this application from both the web and CLI.
 |
-*/
+ */
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
@@ -45,6 +44,6 @@ $app->singleton(
 | the calling script so we can separate the building of the instances
 | from the actual running of the application and sending responses.
 |
-*/
+ */
 
 return $app;
