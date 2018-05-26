@@ -49,7 +49,7 @@ return [
     |
     */
     'providers' => [
-        App\Providers\AppServiceProvider::class,
+        \MCampbell508\Git\Flamethrower\Providers\AppServiceProvider::class,
     ],
 
 ];

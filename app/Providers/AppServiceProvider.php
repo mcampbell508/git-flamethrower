@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace MCampbell508\Git\Flamethrower\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -25,7 +25,9 @@
     },
     "autoload": {
         "psr-4": {
-            "MCampbell508\\Git\\Flamethrower\\": ["src"]
+            "MCampbell508\\Git\\Flamethrower\\": [
+                "app"
+            ]
         }
     },
     "autoload-dev": {

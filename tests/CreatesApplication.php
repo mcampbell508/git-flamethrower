@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace MCampbell508\Tests;
 
 use LaravelZero\Framework\Kernel;
 use LaravelZero\Framework\Application;
