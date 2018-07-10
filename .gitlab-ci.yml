@@ -1,0 +1,53 @@
+---
+image: theshopworks/ci:latest
+
+stages:
+  - test_build
+  - test
+
+before_script:
+  - php /usr/local/bin/composer self-update
+  - cat /etc/debian_version
+  - php --version
+  - php /usr/local/bin/composer --version
+
+test_build:
+  stage: test_build
+  artifacts:
+    expire_in: 7d
+    paths:
+      - vendor/
+  cache:
+    paths:
+      - vendor/
+  script:
+    - php /usr/local/bin/composer install --no-interaction --no-progress
+
+phpunit:
+  stage: test
+  dependencies:
+    - test_build
+  script:
+    - php vendor/bin/phpunit
+
+phpcs:
+  stage: test
+  dependencies:
+    - test_build
+  script:
+    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
+    - php vendor/bin/phpcs
+
+php_stan:
+  stage: test
+  dependencies:
+    - test_build
+  script:
+    - php vendor/bin/phpstan analyse app bootstrap/app.php config tests .php_cs.dist git-review -c phpstan.neon -l 7
+
+php_lint:
+  stage: test
+  dependencies:
+    - test_build
+  script:
+    - php vendor/bin/parallel-lint app bootstrap/app.php config tests .php_cs.dist git-review
