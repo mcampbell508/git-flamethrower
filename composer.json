@@ -2,7 +2,7 @@
     "name": "theshopworks/git-review",
     "description": "A tool to improve development workflow with Git",
     "keywords": ["git", "workflow", "laravel-zero"],
-    "homepage": "https://gitlab.com/theshopworks/git-review",
+    "homepage": "https://github.com/theshopworks/git-review",
     "license": "MIT",
     "authors": [
         {
@@ -50,7 +50,11 @@
     ],
     "scripts": {
         "test": [
-            "php vendor/bin/phpunit --color=always"
+            "php vendor/bin/phpunit --color=always",
+            "php vendor/bin/parallel-lint app bootstrap/app.php config tests .php_cs.dist",
+            "php vendor/bin/phpstan analyse app bootstrap/app.php config tests .php_cs.dist -c phpstan.neon -l 7",
+            "php vendor/bin/phpcs --colors app bootstrap/app.php config tests .php_cs.dist",
+            "php vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --using-cache=no"
         ]
     }
 }
