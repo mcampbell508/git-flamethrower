@@ -18,7 +18,7 @@ Add the `git-review` package to your `composer.json` file.
 ``` json
 {
     "require": {
-        "theshopworks/git-review": "1.0.*"
+        "theshopworks/git-review": "^0.1"
     }
 }
 ```
@@ -26,7 +26,7 @@ Add the `git-review` package to your `composer.json` file.
 Or via the command line in the root of your Laravel installation.
 
 ``` bash
-$ composer require "theshopworks/git-review:1.0*"
+$ composer require "theshopworks/git-review:^0.1"
 ```
 
 Usage
