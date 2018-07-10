@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f56b178f142c4853c51ee0dd3b522a0e",
+    "content-hash": "5d33ab28e79ef93f116049f2f8e71ee9",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -869,6 +869,67 @@
             "time": "2018-07-05T21:58:16+00:00"
         },
         {
+            "name": "league/climate",
+            "version": "3.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/climate.git",
+                "reference": "d657a19837c1f79a891381fb128b755aa3386381"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/d657a19837c1f79a891381fb128b755aa3386381",
+                "reference": "d657a19837c1f79a891381fb128b755aa3386381",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0",
+                "psr/log": "^1.0",
+                "seld/cli-prompt": "^1.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.4",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^5.7.16"
+            },
+            "suggest": {
+                "ext-mbstring": "If ext-mbstring is not available you MUST install symfony/polyfill-mbstring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\CLImate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig Duncan",
+                    "email": "git@duncanc.co.uk",
+                    "homepage": "https://github.com/duncan3dc",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Joe Tannenbaum",
+                    "email": "hey@joe.codes",
+                    "homepage": "http://joe.codes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP's best friend for the terminal. CLImate allows you to easily output colored text, special formats, and more.",
+            "keywords": [
+                "cli",
+                "colors",
+                "command",
+                "php",
+                "terminal"
+            ],
+            "time": "2018-04-29T16:43:54+00:00"
+        },
+        {
             "name": "league/flysystem",
             "version": "1.0.45",
             "source": {
@@ -1502,6 +1563,123 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "seld/cli-prompt",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/cli-prompt.git",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "reference": "a19a7376a4689d4d94cab66ab4f3c816019ba8dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seld\\CliPrompt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be"
+                }
+            ],
+            "description": "Allows you to prompt for user input on the command line, and optionally hide the characters they type",
+            "keywords": [
+                "cli",
+                "console",
+                "hidden",
+                "input",
+                "prompt"
+            ],
+            "time": "2017-03-18T11:32:45+00:00"
+        },
+        {
+            "name": "sjparkinson/static-review",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcampbell508/static-review.git",
+                "reference": "d8b6b1fdd7061a422dc05b65c9ce554faf06fa5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcampbell508/static-review/zipball/d8b6b1fdd7061a422dc05b65c9ce554faf06fa5d",
+                "reference": "d8b6b1fdd7061a422dc05b65c9ce554faf06fa5d",
+                "shasum": ""
+            },
+            "require": {
+                "league/climate": "^2.0 || ^3.0",
+                "php": "^5.5 || ^7.0 || ^7.1",
+                "symfony/console": "^2.0 || ^3.0 || ^4.0",
+                "symfony/process": "^2.1 || ^3.0 || ^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9",
+                "phpunit/phpunit": "^4.6 || ^5.0",
+                "sensiolabs/security-checker": "^3.0",
+                "squizlabs/php_codesniffer": "^2.2"
+            },
+            "suggest": {
+                "sensiolabs/security-checker": "required by ComposerSecurityReview.",
+                "squizlabs/php_codesniffer": "required by PhpCodeSnifferReview."
+            },
+            "bin": [
+                "bin/static-review.php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StaticReview\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "StaticReview\\Test\\Unit\\": "tests/unit/",
+                    "StaticReview\\Test\\Functional\\": "tests/functional/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpcs --colors --standard=PSR2 src/ bin/ hooks/ tests/",
+                    "vendor/bin/phpunit --color=always --testsuite unit",
+                    "vendor/bin/phpunit --color=always --testsuite functional"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Parkinson",
+                    "email": "sam.james.parkinson@gmail.com",
+                    "homepage": "http://samp.im"
+                }
+            ],
+            "description": "An extendable framework for version control hooks.",
+            "support": {
+                "source": "https://github.com/sjparkinson/static-review",
+                "issues": "https://github.com/sjparkinson/static-review/issues"
+            },
+            "time": "2018-07-11T09:48:34+00:00"
         },
         {
             "name": "symfony/console",
@@ -5022,6 +5200,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "sjparkinson/static-review": 20,
         "mockery/mockery": 20
     },
     "prefer-stable": false,
