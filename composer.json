@@ -19,7 +19,8 @@
     "require-dev": {
         "mockery/mockery": "dev-master@dev",
         "phpunit/phpunit": "^7.0",
-        "friendsofphp/php-cs-fixer": "2.11"
+        "friendsofphp/php-cs-fixer": "2.11",
+        "phpstan/phpstan": "^0.9.2"
     },
     "autoload": {
         "psr-4": {
