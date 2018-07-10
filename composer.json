@@ -1,0 +1,50 @@
+{
+    "name": "theshopworks/git-review",
+    "description": "A tool to improve development workflow with Git",
+    "keywords": ["git", "workflow", "laravel-zero"],
+    "homepage": "https://gitlab.com/theshopworks/git-review",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Campbell",
+            "email": "matt.campbell@theshopworks.com",
+            "homepage": "http://mcampbell508.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "dev-master@dev",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shopworks\\Git\\Review\\": [
+                "app"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Shopworks\\Tests\\": ["tests"]
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "platform": {
+            "ext-posix": "0"
+        }
+    },
+    "bin": [
+        "git-review"
+    ],
+    "scripts": {
+        "test": [
+            "php vendor/bin/phpunit --color=always"
+        ]
+    }
+}
