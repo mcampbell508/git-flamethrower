@@ -5,6 +5,8 @@ A tool designed for improving development workflow with Git
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Config File](#config-file)
+- [Commands](#commands)
 - [Code Style](#code-style)
 - [Testing](#testing)
 - [Documentation](#docs)
@@ -36,6 +38,41 @@ Usage
 ``` php
 vendor/bin/git-review
 ```
+Config File
+------------
+
+You can save the project configuration in a `git-review.yml.dist` or `git-review.yml` file in the root directory of your project.
+
+> Note: If both a `git-review.yml.dist` and a `git-review.yml` file are found, Git Review will use the `git-review.yml` configuration file. This is useful for overriding options locally, if this is necessary. The recommended setup should ideally be commit the `git-review.yml.dist` file as part of your project, and then ignore the `git-review.yml` via the `.gitignore` file.
+
+
+Commands
+--------------
+
+## `es-lint`
+
+You can use this tool, to run ESLint on only the changed files on a topic branch (non-master).  This should save some time when running these checks on CI services as ESLint is only concerned with the files you have modified.
+
+> If the current branch is `master` the usual ESLint checks for the paths specified will run.
+
+### Configuration
+
+You may provide some configuration for this command:
+
+```
+tools:
+  es_lint:
+    bin_path: "node_modules/.bin/eslint"
+    config_path: ".eslintrc.json"
+    extensions:
+      - "js"
+      - "jsx"
+    paths:
+      - "example/"
+```
+
+> The `bin_path`, `config_path` and `paths` configurations will always be relative to the root of your project.
+
 
 Code Style
 -------
