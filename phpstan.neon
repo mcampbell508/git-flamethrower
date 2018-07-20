@@ -5,4 +5,9 @@ parameters:
         - '#Call to an undefined method Mockery\\MockInterface::[a-zA-Z0-9_]+\(\)#'
         - '#, Mockery\\MockInterface given.#'
         - '#Parameter \#1 \$finder of method PhpCsFixer\\ConfigInterface::setFinder\(\) expects iterable\<string\>, PhpCsFixer\\Finder given.#'
+        - '#Call to an undefined method Symfony\\Component\\Console\\Output\\OutputInterface::#'
+        - '#does not accept Mockery\\MockInterface.#'
+        - '#Call to an undefined method Mockery\\MockInterface|[a-zA-Z0-9\\_]+::shouldReceive\(\)#'
+        - '#constructor expects [a-zA-Z0-9\\_]+, Mockery\\MockInterface|[a-zA-Z0-9\\_]+ given#'
+        - '#Call to an undefined method Mockery\\ExpectationInterface|Mockery\\HigherOrderMessage::once\(\)#'
     reportUnmatchedIgnoredErrors: false
