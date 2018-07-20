@@ -169,7 +169,7 @@ return Config::create()
         'simplified_null_return' => true,
         'single_blank_line_before_namespace' => true,
         'single_line_comment_style' => false,
-        'single_quote' => true,
+        'single_quote' => false,
         'space_after_semicolon' => true,
         'standardize_increment' => true,
         'standardize_not_equals' => true,
