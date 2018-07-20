@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Shopworks\Tests;
 
@@ -10,7 +12,6 @@ trait CreatesApplication
     /**
      * Creates the application and returns it.
      *
-     * @return \Illuminate\Contracts\Foundation\Application
      */
     public function createApplication(): ApplicationContract
     {
