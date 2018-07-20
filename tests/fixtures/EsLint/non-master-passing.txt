@@ -1,0 +1,20 @@
+
+Filtering changed files on branch using the following paths:
+============================================================
+
+ * assets/
+ * fruits/*/assets
+
+Modified files on branch "pineapples"
+
+assets/example1.jsx - added
+fruits/pineapples/assets/example2.js - modified
+fruits/oranges/assets/example3.js - added
+
+Running command:
+
+node_modules/.bin/eslint --ext js --ext jsx assets/example1.jsx fruits/pineapples/assets/example2.js fruits/oranges/assets/example3.js
+
+
+ [OK] ESLint checks passed, good job!!!!                                        
+
