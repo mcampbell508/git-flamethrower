@@ -1,0 +1,5 @@
+---
+
+test:
+  configuration:
+    - another_level
