@@ -1,0 +1,38 @@
+layout: index
+description: Git Review - Tools for improving Git workflow
+subtitle: Enhance your Git development workflow, with a set of carefully crafted commands and Git hooks
+comments: false
+install: composer require theshopworks/git-review
+
+---
+ul#intro-feature-list
+  li.intro-feature-wrap
+    .intro-feature
+      .intro-feature-icon
+        i.fa.fa-info
+      h3.intro-feature-title Manage workflow in a busy team environment
+      p.intro-feature-desc This project is designed to speed up development workflow, especially when using Git. If you like following <a href="https://chris.beams.io/posts/git-commit/">recommended commit style guidelines</a>
+        | or would like to run tasks such as <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHPCS</a>, <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a> or <a href="https://eslint.org/">ESLint</a> on <b>ONLY</b> the changed files on a branch, this tool might be your solution.
+  li.intro-feature-wrap
+    .intro-feature
+      .intro-feature-icon
+        i.fa.fa-cogs
+      h3.intro-feature-title Highly Configurable
+      p.intro-feature-desc This project is designed to be easily configurable using a <code>git-review.yml.dist</code> configuration file. A common goal of this project is for it to be as configurable as possible.
+  li.intro-feature-wrap
+    .intro-feature
+      .intro-feature-icon
+        i.fa.fa-eye
+      h3.intro-feature-title Review commits and branches <i class="fa fa-exclamation-triangle" aria-hidden="true" title="Coming soon"></i>
+      p.intro-feature-desc This project contains tools to improve your Git workflow both locally, and in a CI environment like GitLab pipelines or TravisCI.
+  li.intro-feature-wrap
+        .intro-feature
+          .intro-feature-icon
+            i.fa.fa-comments
+          h3.intro-feature-title Receive immediate feedback via Git Hooks <i class="fa fa-exclamation-triangle" aria-hidden="true" title="Coming soon"></i>
+          p.intro-feature-desc Git has a way to hook into certain actions such as before or after a commit is made or when a branch is pushed. This projcet hooks into these events and allows the following:
+              | <ul style="list-style: square;">
+              | <li>Review the structure of a Git commit message</li>
+              | <li>Automatically add an case issue number to a commit message, when using a particular branch name strategy.</li>
+              | <li>Run PHPCS or PHP-CS-Fixer tools before the commit editor of choice is shown.</li>
+              | </ul>

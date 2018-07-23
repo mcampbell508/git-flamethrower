@@ -1,0 +1,26 @@
+title: "Git Review - The Shopworks"
+subtitle: "Git Review - Git workflow tools"
+description: "Git Review - Git workflow tools"
+author: The Shopworks Development Team
+language: en
+composer_install: "composer require theshopworks/git-review"
+
+url: https://pages.gitlab.com/git-review
+repo_url: https://gitlab.com/theshopworks/git-review
+sw_group_url: https://gitlab.com/theshopworks
+root: /
+permalink: news/:year/:month/:day/:title/
+archive_dir: news
+code_dir: downloads/code
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+post_asset_folder: true
+per_page: 0
+
+theme: navy
+deploy:
+  type: git
+  repo: git@gitlab.com/theshopworks/git-review
+
+highlight:
+  enable: true
+  line_number: false
