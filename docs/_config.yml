@@ -5,10 +5,10 @@ author: The Shopworks Development Team
 language: en
 composer_install: "composer require theshopworks/git-review"
 
-url: https://pages.gitlab.com/git-review
+url: https://theshopworks.gitlab.io/git-review
 repo_url: https://gitlab.com/theshopworks/git-review
 sw_group_url: https://gitlab.com/theshopworks
-root: /
+root: /git-review/
 permalink: news/:year/:month/:day/:title/
 archive_dir: news
 code_dir: downloads/code
@@ -18,8 +18,7 @@ per_page: 0
 
 theme: navy
 deploy:
-  type: git
-  repo: git@gitlab.com/theshopworks/git-review
+  type:
 
 highlight:
   enable: true
