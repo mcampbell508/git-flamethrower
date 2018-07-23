@@ -1,12 +1,46 @@
-Contributing
-============
+## Development
 
 Contributions are **welcome** and will be fully **credited**.
 
 We accept contributions via Merge Requests on [GitLab](https://gitlab.com/theshopworks/git-review).
 
-Pull Requests
--------------
+### Before You Start
+
+Please follow the coding style:
+
+- Follow [PHP-FIG PSR2 Coding Standards](https://www.php-fig.org/psr/psr-2/).
+- Use 4 spaces over tabs.
+- Use [PHP-CS-Fixer rules](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
+- Use [PHPStan](https://github.com/phpstan/phpstan) level 7, for static analysis of code.
+- Use [PHPUnit](https://phpunit.de/) for automated tests.
+
+### Workflow
+
+1. Fork [theshopworks/git-review](https://gitlab.com/theshopworks/git-review).
+2. Clone the repository to your computer and install dependencies.
+
+    {% code %}
+    $ git clone https://gitlab.com/<username>/git-review.git
+    $ cd git-review
+    $ composer install
+    {% endcode %}
+
+3. Create a feature branch.
+
+    {% code %}
+    $ git checkout -b new-feature
+    {% endcode %}
+
+4. Start hacking.
+5. Push the branch:
+
+    {% code %}
+    $ git push origin new-feature
+    {% endcode %}
+
+6. Create a merge request and describe the change.
+
+## Merge Requests
 
 - **Coding Syntax** - Please keep the code syntax consistent with the rest of the package.
 
@@ -22,13 +56,4 @@ Pull Requests
 
 - **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
 
-- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
-
-Running Tests
--------------
-
-``` bash
-$ phpunit
-```
-
-**Happy coding**!
+- **Send coherent history** - Make sure each individual commit in your pull request is meaningful.
