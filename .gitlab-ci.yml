@@ -11,6 +11,7 @@ before_script:
   - cat /etc/debian_version
   - php --version
   - php /usr/local/bin/composer --version
+  - which git
 
 test_build:
   stage: test_build
@@ -29,6 +30,8 @@ phpunit:
   dependencies:
     - test_build
   script:
+    - git config --global user.email "automated-tests@theshopworks.com"
+    - git config --global user.name "Automated Tests"
     - php vendor/bin/phpunit
 
 phpcs:
