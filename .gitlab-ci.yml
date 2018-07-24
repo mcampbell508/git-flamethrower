@@ -4,6 +4,7 @@ image: theshopworks/ci:latest
 stages:
   - test_build
   - test
+  - deploy
 
 before_script:
   - php /usr/local/bin/composer self-update
@@ -51,3 +52,19 @@ php_lint:
     - test_build
   script:
     - php vendor/bin/parallel-lint app bootstrap/app.php config tests .php_cs.dist git-review
+
+pages:
+  stage: deploy
+  cache:
+    paths:
+      - docs/node_modules/
+  script:
+    - cd docs/
+    - yarn install
+    - ./node_modules/.bin/hexo deploy
+    - mv public/ ../
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

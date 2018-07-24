@@ -1,0 +1,5 @@
+docs:
+  getting_started:
+    overview: index.html
+  miscellaneous:
+    contributing: contributing.html
