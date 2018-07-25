@@ -22,4 +22,7 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
+    <php>
+        <env name="COLUMNS" value="80"/>
+    </php>
 </phpunit>
