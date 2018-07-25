@@ -1,0 +1,16 @@
+<?php
+
+namespace Shopworks\Tests;
+
+use Mockery;
+use PHPUnit\Framework\TestCase;
+
+class UnitTestCase extends TestCase
+{
+    protected function tearDown(): void
+    {
+        Mockery::close();
+
+        parent::tearDown();
+    }
+}

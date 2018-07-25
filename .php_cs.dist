@@ -6,7 +6,8 @@ use PhpCsFixer\Finder;
 $finder = Finder::create()
     ->in(__DIR__)
     ->exclude('vendor')
-    ->exclude('bootstrap/cache');
+    ->exclude('bootstrap/cache')
+    ->exclude('tests/fixtures');
 
 return Config::create()
     ->setRiskyAllowed(true)
