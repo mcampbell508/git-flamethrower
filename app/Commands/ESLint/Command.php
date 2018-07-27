@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Shopworks\Git\Review\Commands\ESLint;
 
-use Illuminate\Support\Collection;
 use Shopworks\Git\Review\BaseCommand;
-use StaticReview\File\File;
 
 class Command extends BaseCommand
 {
@@ -39,7 +37,7 @@ class Command extends BaseCommand
         $this->getOutput()->title('Filtering changed files on branch using the following paths:');
         $this->getOutput()->listing($esLintConfig['paths']);
 
-        $filePaths = $this->resolveFilePaths($esLintConfig);
+        $filePaths = $this->resolveFilePaths($esLintConfig['paths'], 'tools.es_lint.paths');
 
         if (empty($filePaths)) {
             $this->getOutput()->writeln('No files to scan matching provided filters, nothing to do!');
@@ -63,37 +61,5 @@ class Command extends BaseCommand
 
         $this->getOutput()->newLine();
         $this->getOutput()->success('ESLint checks passed, good job!!!!');
-    }
-
-    protected function getFilesAsString(Collection $files): Collection
-    {
-        return $files->map(function (File $file) {
-            return $file->getRelativePath();
-        })->unique();
-    }
-
-    private function resolveFilePaths(array $esLintConfig): array
-    {
-        $branchName = $this->gitFilesFinder->getBranchName();
-
-        if ($branchName === 'master') {
-            return $this->configRepository->get('tools.es_lint.paths');
-        }
-
-        /** @var Collection $gitFiles */
-        $gitFiles = $this->gitFilesFinder->find($esLintConfig['paths']);
-        $filePaths = $this->getFilesAsString($gitFiles);
-
-        if ($filePaths->isEmpty()) {
-            return [];
-        }
-
-        $this->getOutput()->writeln("<options=bold,underscore>Modified files on branch \"${branchName}\"</>\n");
-
-        $this->getOutput()->writeln($gitFiles->map(function (File $file) {
-            return $file->getName() . ' - ' . $file->getFormattedStatus();
-        })->toArray());
-
-        return $filePaths->toArray();
     }
 }
