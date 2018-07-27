@@ -60,7 +60,7 @@ class BaseCommand extends Command
         $branchName = $this->gitFilesFinder->getBranchName();
 
         if ($branchName === 'master') {
-            return $this->configRepository->get($config);
+            return $this->configRepository->get($config, []);
         }
 
         /** @var Collection $gitFiles */

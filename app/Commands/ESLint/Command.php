@@ -18,7 +18,7 @@ class Command extends BaseCommand
             return;
         }
 
-        $esLintConfig = $this->configRepository->get('tools.es_lint');
+        $esLintConfig = $this->configRepository->get('tools.es_lint', []);
 
         if (!isset($esLintConfig['paths'])) {
             $this->error("No paths have been specified in the config file!");

@@ -71,7 +71,7 @@ class CommandTest extends UnitTestCase
     public function it_handles_when_no_paths_are_specified_in_the_config(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([]);
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([]);
 
         $this->commandTester->execute([
             'command' => $this->command->getName(),
@@ -87,7 +87,7 @@ class CommandTest extends UnitTestCase
     public function it_handles_when_a_branch_that_is_not_master_is_empty(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn(['paths' => ['/test']]);
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn(['paths' => ['/test']]);
 
         $this->gitFilesFinder->shouldReceive('getBranchName')->once()->andReturn("potatoes");
         $this->git->shouldReceive('isEmpty')->once()->andReturn(true);
@@ -106,14 +106,14 @@ class CommandTest extends UnitTestCase
     public function it_displays_an_error_message_in_the_console_when_the_es_lint_command_has_failed(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([
             'paths' => [
                 'assets/',
                 'fruits/*/assets',
             ],
             'extensions' => ['js', 'jsx'],
         ]);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths", [])->andReturn([
             'assets/',
             'fruits/*/assets',
         ]);
@@ -141,14 +141,14 @@ class CommandTest extends UnitTestCase
     public function it_runs_the_es_lint_command_on_all_specified_paths_and_extensions_when_the_current_checked_out_branch_is_master(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([
             'paths' => [
                 'assets/',
                 'fruits/*/assets',
             ],
             'extensions' => ['js', 'jsx'],
         ]);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths", [])->andReturn([
             'assets/',
             'fruits/*/assets',
         ]);
@@ -176,14 +176,14 @@ class CommandTest extends UnitTestCase
     public function it_runs_the_es_lint_command_on_only_the_changed_files_filtered_by_extensions_when_the_current_checked_out_branch_is_not_master(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([
             'paths' => [
                 'assets/',
                 'fruits/*/assets',
             ],
             'extensions' => ['js', 'jsx'],
         ]);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths", [])->andReturn([
             'assets/',
             'fruits/*/assets',
         ]);
@@ -221,7 +221,7 @@ class CommandTest extends UnitTestCase
     public function it_does_not_execute_the_es_lint_bin_command_when_the_current_branch_is_not_master_and_no_matching_file_paths_have_been_found(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([
             'paths' => [
                 'assets/',
                 'fruits/*/assets',
