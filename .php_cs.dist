@@ -5,9 +5,14 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
+    ->name('*.php')
+    ->name('.php_cs*')
+    ->name('git-review')
+    ->notName("*.xml.dist")
     ->exclude('vendor')
     ->exclude('bootstrap/cache')
-    ->exclude('tests/fixtures');
+    ->exclude('tests/fixtures')
+    ->ignoreDotFiles(false);
 
 return Config::create()
     ->setRiskyAllowed(true)
