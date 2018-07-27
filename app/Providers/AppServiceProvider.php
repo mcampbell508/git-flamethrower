@@ -6,6 +6,7 @@ namespace Shopworks\Git\Review\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Shopworks\Git\Review\Commands\ESLint\Command as ESLintCommand;
+use Shopworks\Git\Review\Commands\PhpCsFixer\Command as PhpCsFixerCommand;
 use Shopworks\Git\Review\Yml\YmlConfiguration;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->commands([
             ESLintCommand::class,
+            PhpCsFixerCommand::class,
         ]);
     }
 }

@@ -1,0 +1,15 @@
+
+Filtering changed files on branch using the following paths:
+============================================================
+
+ * app/
+ * fruits/*/tests
+
+
+Running command:
+
+php vendor/bin/php-cs-fixer fix app/ fruits/*/tests --dry-run -v
+
+
+ [OK] PHP-CS-Fixer checks passed, good job!!!!                                  
+

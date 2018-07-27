@@ -1,0 +1,20 @@
+
+Filtering changed files on branch using the following paths:
+============================================================
+
+ * app/
+ * fruits/*/tests
+
+Modified files on branch "pineapples"
+
+app/example1.php - added
+fruits/pineapples/tests/example2.php - modified
+fruits/oranges/tests/example3.php - added
+
+Running command:
+
+php vendor/bin/php-cs-fixer fix app/example1.php fruits/pineapples/tests/example2.php fruits/oranges/tests/example3.php --dry-run -v
+
+
+ [OK] PHP-CS-Fixer checks passed, good job!!!!                                  
+
