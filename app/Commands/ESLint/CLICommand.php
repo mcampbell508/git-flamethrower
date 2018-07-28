@@ -8,13 +8,11 @@ class CLICommand
 {
     private $esLintConfig;
     private $filePaths;
-    private $branchName;
 
-    public function __construct(array $esLintConfig, string $branchName, array $filePaths)
+    public function __construct(array $esLintConfig, array $filePaths)
     {
         $this->esLintConfig = $esLintConfig;
         $this->filePaths = $filePaths;
-        $this->branchName = $branchName;
     }
 
     public function toString(): string
