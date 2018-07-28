@@ -19,7 +19,7 @@ class CLICommand
     {
         $esLintBin = Arr::get($this->esLintConfig, 'bin_path', 'node_modules/.bin/eslint');
 
-        return $this->addConfigPath($this->addFilePaths($this->addExtensions($esLintBin)));
+        return $this->addFixOption($this->addConfigPath($this->addFilePaths($this->addExtensions($esLintBin))));
     }
 
     private function addExtensions(string $cmd): string
@@ -47,5 +47,12 @@ class CLICommand
         }
 
         return $cmd;
+    }
+
+    private function addFixOption(string $cmd): string
+    {
+        $useFixMode = (bool)Arr::get($this->esLintConfig, 'use_fix_mode', false);
+
+        return $cmd .= $useFixMode ? ' --fix' : '';
     }
 }

@@ -37,4 +37,17 @@ class CLICommandTest extends UnitTestCase
 
         $this->assertEquals("node_modules/.bin/eslint app/ tests/*/examples", $command->toString());
     }
+
+    /** @test */
+    public function it_adds_the_fix_option_when_the_necessary_config_is_specified(): void
+    {
+        $command = new CLICommand([
+            'use_fix_mode' => true,
+        ], ['app/', 'tests/*/examples']);
+
+        $this->assertEquals(
+            "node_modules/.bin/eslint app/ tests/*/examples --fix",
+            $command->toString()
+        );
+    }
 }
