@@ -56,6 +56,7 @@ class CommandTest extends UnitTestCase
     /** @test */
     public function it_returns_early_when_no_config_is_found(): void
     {
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn([]);
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(true);
 
         $this->commandTester->execute([
@@ -87,7 +88,9 @@ class CommandTest extends UnitTestCase
     public function it_handles_when_a_branch_that_is_not_master_is_empty(): void
     {
         $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
-        $this->configRepository->shouldReceive("get")->with("tools.es_lint", [])->andReturn(['paths' => ['/test']]);
+        $this->configRepository->shouldReceive("get")
+            ->with("tools.es_lint", [])
+            ->andReturn(['paths' => ['/test']]);
 
         $this->gitFilesFinder->shouldReceive('getBranchName')->once()->andReturn("potatoes");
         $this->git->shouldReceive('isEmpty')->once()->andReturn(true);

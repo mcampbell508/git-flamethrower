@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Shopworks\Git\Review;
 
+use Assert\Assertion;
 use Illuminate\Support\Collection;
 use LaravelZero\Framework\Commands\Command;
+use Shopworks\Git\Review\Commands\CliCommandContract;
 use Shopworks\Git\Review\File\GitFilesFinder;
 use Shopworks\Git\Review\Process\Process;
 use Shopworks\Git\Review\Process\Processor;
@@ -20,6 +22,14 @@ class BaseCommand extends Command
     protected $configRepository;
     protected $gitBranch;
     protected $process;
+    protected $commandString = '';
+    protected $successMessage;
+    protected $errorMessage;
+    protected $realTimeOutput = true;
+    protected $ymlConfig;
+    protected $config;
+    protected $configPaths;
+    protected $cliCommand;
 
     public function __construct(
         Process $process,
@@ -37,6 +47,56 @@ class BaseCommand extends Command
         $this->gitBranch = $gitBranch;
     }
 
+    public function handle(): void
+    {
+        if ($this->configNotFound()) {
+            return;
+        }
+
+        $this->ymlConfig = $this->configRepository->get($this->config, []);
+
+        if (!isset($this->ymlConfig['paths'])) {
+            $this->error("No paths have been specified in the config file!");
+
+            return;
+        }
+
+        $branchName = $this->gitFilesFinder->getBranchName();
+
+        if ($branchName !== 'master' && $this->gitBranch->isEmpty()) {
+            $this->info("This branch is empty, exiting!");
+
+            return;
+        }
+
+        $this->getOutput()->title('Filtering changed files on branch using the following paths:');
+        $this->getOutput()->listing($this->ymlConfig['paths']);
+
+        $paths = $this->resolveFilePaths($this->ymlConfig['paths'] ?? [], $this->configPaths);
+
+        if (empty($paths)) {
+            $this->getOutput()->writeln('No files to scan matching provided filters, nothing to do!');
+
+            return;
+        }
+
+        $this->setCommandString($paths);
+
+        $this->getOutput()->writeln("\n<options=bold,underscore>Running command:</>\n");
+        $this->getOutput()->writeln("<info>{$this->commandString}</info>\n");
+
+        $process = $this->runCommand();
+
+        if ($process->getExitCode() !== 0) {
+            $this->getOutput()->writeln("\n<error>{$this->errorMessage}</error>");
+
+            return;
+        }
+
+        $this->getOutput()->newLine();
+        $this->getOutput()->success($this->successMessage);
+    }
+
     protected function configNotFound(): bool
     {
         $isEmpty = $this->configRepository->isEmpty();
@@ -48,11 +108,11 @@ class BaseCommand extends Command
         return $isEmpty;
     }
 
-    protected function runCommand(string $command, bool $realTimeOutput = false): Process
+    protected function runCommand(): Process
     {
-        $process = $this->process->simple($command);
+        $process = $this->process->simple($this->commandString);
 
-        return $this->processor->process($process, $realTimeOutput);
+        return $this->processor->process($process, $this->realTimeOutput);
     }
 
     protected function resolveFilePaths(array $paths, string $config): array
@@ -68,8 +128,6 @@ class BaseCommand extends Command
         $filePaths = $this->getFilesAsString($gitFiles);
 
         if ($filePaths->isEmpty()) {
-            $this->getOutput()->writeln('No files to scan matching provided filters!');
-
             return [];
         }
 
@@ -80,6 +138,19 @@ class BaseCommand extends Command
         })->toArray());
 
         return $filePaths->toArray();
+    }
+
+    protected function setCommandString(array $paths): void
+    {
+        /** @var CliCommandContract $command */
+        $command = new $this->cliCommand(
+            $this->ymlConfig,
+            $paths
+        );
+
+        Assertion::isInstanceOf($command, CliCommandContract::class);
+
+        $this->commandString = $command->toString();
     }
 
     private function getFilesAsString(Collection $files): Collection

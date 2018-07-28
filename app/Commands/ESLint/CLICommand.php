@@ -3,8 +3,9 @@
 namespace Shopworks\Git\Review\Commands\ESLint;
 
 use Illuminate\Support\Arr;
+use Shopworks\Git\Review\Commands\CliCommandContract;
 
-class CLICommand
+class CLICommand implements CliCommandContract
 {
     private $esLintConfig;
     private $filePaths;
