@@ -41,7 +41,7 @@ class Command extends BaseCommand
 
         $filePaths = $this->resolveFilePaths($esLintConfig);
 
-        $command = new CLICommand($esLintConfig, $branchName, $filePaths);
+        $command = new CLICommand($esLintConfig, $filePaths);
         $commandString = $command->toString();
 
         $this->getOutput()->writeln("\n<options=bold,underscore>Running command:</>\n");

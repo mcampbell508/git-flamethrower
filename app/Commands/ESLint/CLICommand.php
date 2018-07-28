@@ -8,20 +8,18 @@ class CLICommand
 {
     private $esLintConfig;
     private $filePaths;
-    private $branchName;
 
-    public function __construct(array $esLintConfig, string $branchName, array $filePaths)
+    public function __construct(array $esLintConfig, array $filePaths)
     {
         $this->esLintConfig = $esLintConfig;
         $this->filePaths = $filePaths;
-        $this->branchName = $branchName;
     }
 
     public function toString(): string
     {
         $esLintBin = Arr::get($this->esLintConfig, 'bin_path', 'node_modules/.bin/eslint');
 
-        return $this->addConfigPath($this->addFilePaths($this->addExtensions($esLintBin)));
+        return $this->addFixOption($this->addConfigPath($this->addFilePaths($this->addExtensions($esLintBin))));
     }
 
     private function addExtensions(string $cmd): string
@@ -49,5 +47,12 @@ class CLICommand
         }
 
         return $cmd;
+    }
+
+    private function addFixOption(string $cmd): string
+    {
+        $useFixMode = (bool)Arr::get($this->esLintConfig, 'use_fix_mode', false);
+
+        return $cmd .= $useFixMode ? ' --fix' : '';
     }
 }
