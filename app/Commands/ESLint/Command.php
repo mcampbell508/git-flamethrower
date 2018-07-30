@@ -41,6 +41,12 @@ class Command extends BaseCommand
 
         $filePaths = $this->resolveFilePaths($esLintConfig);
 
+        if (empty($filePaths)) {
+            $this->getOutput()->writeln('No files to scan matching provided filters, nothing to do!');
+
+            return;
+        }
+
         $command = new CLICommand($esLintConfig, $filePaths);
         $commandString = $command->toString();
 
@@ -79,8 +85,6 @@ class Command extends BaseCommand
         $filePaths = $this->getFilesAsString($gitFiles);
 
         if ($filePaths->isEmpty()) {
-            $this->getOutput()->writeln('No files to scan matching provided filters!');
-
             return [];
         }
 

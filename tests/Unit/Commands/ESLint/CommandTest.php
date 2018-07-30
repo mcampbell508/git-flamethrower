@@ -217,6 +217,39 @@ class CommandTest extends UnitTestCase
         $this->assertEquals(\file_get_contents(__DIR__ . '/../../../fixtures/EsLint/non-master-passing.txt'), $output);
     }
 
+    /** @test */
+    public function it_does_not_execute_the_es_lint_bin_command_when_the_current_branch_is_not_master_and_no_matching_file_paths_have_been_found(): void
+    {
+        $this->configRepository->shouldReceive('isEmpty')->once()->andReturn(false);
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint")->andReturn([
+            'paths' => [
+                'assets/',
+                'fruits/*/assets',
+            ],
+            'extensions' => ['js', 'jsx'],
+        ]);
+        $this->configRepository->shouldReceive("get")->with("tools.es_lint.paths")->andReturn([
+            'assets/',
+            'fruits/*/assets',
+        ]);
+
+        $this->gitFilesFinder->shouldReceive('getBranchName')->andReturn("pineapples");
+        $this->git->shouldReceive('isEmpty')->once()->andReturn(false);
+
+        $this->gitFilesFinder->shouldReceive('find')->once()->andReturn(collect([]));
+
+        $this->process->shouldNotReceive('simple');
+        $this->processor->shouldNotReceive('process');
+
+        $this->commandTester->execute([
+            'command' => $this->command->getName(),
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+
+        $this->assertEquals(\file_get_contents(__DIR__ . '/../../../fixtures/EsLint/non-master-no-files.txt'), $output);
+    }
+
     private function getCommandTester(): CommandTester
     {
         $consoleApplication = new Application();
