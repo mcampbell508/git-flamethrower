@@ -1,0 +1,8 @@
+
+Filtering changed files on branch using the following paths:
+============================================================
+
+ * assets/
+ * fruits/*/assets
+
+No files to scan matching provided filters, nothing to do!
