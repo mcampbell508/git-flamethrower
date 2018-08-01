@@ -9,7 +9,7 @@ use Symfony\Component\Process\Process as SymfonyProcess;
 class Process extends SymfonyProcess
 {
     public function __construct(
-        $commandline,
+        $commandline = '',
         ?string $cwd = null,
         ?array $env = null,
         $input = null,
