@@ -11,4 +11,4 @@ Running command:
 node_modules/.bin/eslint --ext js --ext jsx assets/ fruits/*/assets
 
 
-ESLint failed.
+ESLint checks failed!

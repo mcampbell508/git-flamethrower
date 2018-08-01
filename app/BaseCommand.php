@@ -23,8 +23,7 @@ class BaseCommand extends Command
     protected $gitBranch;
     protected $process;
     protected $commandString = '';
-    protected $successMessage;
-    protected $errorMessage;
+    protected $toolName = '';
     protected $realTimeOutput = true;
     protected $ymlConfig;
     protected $config;
@@ -45,6 +44,9 @@ class BaseCommand extends Command
         $this->gitFilesFinder = $gitFilesFinder;
         $this->configRepository = $configRepository;
         $this->gitBranch = $gitBranch;
+
+        $this->setDescription("Run {$this->toolName} on only the changed files on a Git topic branch. All files on "
+            . "`master` will be checked.");
     }
 
     public function handle(): void
@@ -88,13 +90,13 @@ class BaseCommand extends Command
         $process = $this->runCommand();
 
         if ($process->getExitCode() !== 0) {
-            $this->getOutput()->writeln("\n<error>{$this->errorMessage}</error>");
+            $this->getOutput()->writeln("\n<error>{$this->getErrorMessage()}</error>");
 
             return;
         }
 
         $this->getOutput()->newLine();
-        $this->getOutput()->success($this->successMessage);
+        $this->getOutput()->success($this->getSuccessMessage());
     }
 
     protected function configNotFound(): bool
@@ -151,6 +153,16 @@ class BaseCommand extends Command
         Assertion::isInstanceOf($command, CliCommandContract::class);
 
         $this->commandString = $command->toString();
+    }
+
+    protected function getErrorMessage(): string
+    {
+        return "{$this->toolName} checks failed!";
+    }
+
+    protected function getSuccessMessage(): string
+    {
+        return "{$this->toolName} checks passed, good job!!!!";
     }
 
     private function getFilesAsString(Collection $files): Collection

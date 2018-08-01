@@ -11,4 +11,4 @@ Running command:
 php vendor/bin/php-cs-fixer fix app/ fruits/*/tests --dry-run -v
 
 
-PHP-CS-Fixer failed.
+PHP-CS-Fixer checks failed!
